@@ -1,0 +1,55 @@
+.header {
+    background-color: transparent;
+    padding: 5px 5px;
+    height: 15vh;
+  }
+
+.header .jason-van-bladel {
+    float: left;
+    color: var(--dark_text);
+    text-align: center;
+    margin-left: 15px;
+    padding: 5px;
+    text-decoration: none;
+    font-size: 3vw; 
+    line-height: 58px;
+    font-family: Martel;
+    font-weight: 600;
+   }
+
+  .software-engineer {
+    float: right;
+    color: var(--dark_text);
+    text-align: center;
+    padding-top: 6px;
+    padding-left: 15px;
+    text-decoration: none;
+    font-size: 1.5vw; 
+    line-height: 58px;
+    font-family: Martel;
+    font-weight: 400;
+  }
+
+  .navbar{
+    float: right;
+    margin-right: 10px;
+  }
+
+  .nav-item{
+    line-height: 24px;
+    font-size: 36px; 
+    padding-top: 10px;
+    float:right;
+    font-family: Martel;
+  }
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--dark_text);
+}
+
+  /*.nav-item a{
+    text-decoration: none;
+    color: inherit;
+  }*/
+
+  

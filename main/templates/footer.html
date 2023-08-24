@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/footer.css' %}">
+<footer>
+  <hr>
+  <footer class="footer">
+    <div class="contact-me">
+      {% if my_view_name != "contact"%}
+      <a class="contact_button" href="{% url 'contact' %}">
+        Contact Me
+      </a>
+      {% endif %}
+    </div>
+    <p class="copywrite">
+      <b>© 2023 Jason Van Bladel</b>
+      <br>
+      Created with Hard Work
+      <br>
+      <b>Version 1.0.0</b>
+    </p>
+  </footer>
+</footer>

@@ -1,0 +1,39 @@
+.footer{
+    background-color: transparent;
+    overflow: hidden;
+    display: flex;
+    width: 100vw;
+}
+
+.footer a{
+    text-decoration: none;
+    color: inherit;
+  }
+
+.copywrite{
+    padding-right: 5vw;
+    float:right;
+    text-align: right;
+}
+.contact-me{
+    flex: 1;
+    padding-left: 40vw;
+    text-align: center;
+}
+
+.contact-me .contact_button{
+    display: block;
+    background-color: var(--secondary_color);
+    width: 20vw;
+    text-align: center;
+    border-radius: 25px;
+    color: var(--light_text);
+    font-size: 3.5vw;
+    text-decoration: none;
+    margin-bottom: 1.5vh;
+    
+}
+
+.contact-me .contact_button:hover{
+    color: var(--light_text_hover);
+}

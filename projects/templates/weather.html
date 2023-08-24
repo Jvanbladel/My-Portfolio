@@ -1,0 +1,231 @@
+<!-- weather.html -->
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Real-Time Weather</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/weather.css'%}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+
+{% block header %}
+{% include 'header.html' %}
+{% endblock %}
+
+<body>
+    <div class="location_title">Real-Time Weather Dashboard</div>
+    <hr style="margin-left: 10vw; width: 80vw;">
+    <div class="container" style="min-height: 50vh;">
+        <div class="row justify-content-center mt-5">
+            <div class="col w-50"> {# Set the column width to occupy 65% of the screen #}
+                <form action="/weather/" method="GET" class="form-inline d-flex justify-content-center">
+                    {% if request.GET.location %}
+                    <input type="text" name="location" class="form-control rounded-pill custom-input"
+                        placeholder="Enter Location" value="">
+                    {% else %}
+                    <input type="text" name="location" class="form-control rounded-pill custom-input"
+                        placeholder="Enter Location">
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary ml-2 custom-button button-color">Search</button>
+                </form>
+            </div>
+        </div>
+
+        {% if weather_data %}
+
+
+        <div class="container text-center">
+            <div class="location_title">Current Weather {{location_name}}
+            </div>
+            {% for weather in weather_data.current.weather %}
+            {% if forloop.counter0 == 0 %} {# Limit the loop to the first element #}
+            <img class="weather-icon" src="{% static 'svg/'|add:weather.main|add:'.svg' %}"
+                alt="{{ weather.main }} SVG Image">
+            <h2>{{ weassssther.description }}</h2>
+            {% endif %}
+            {% endfor %}
+            <h1>Temperature: <span class="temp" data-unit="F" data-kelvin="{{ weather_data.current.temp }}">{{
+                    weather_data.current.temp }}</span> <span>°</span><span class="temp_unit">F</span></h1>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Humidity</h5>
+                                <p class="card-text">{{ weather_data.current.humidity }}%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Wind Speed</h5>
+                                <p class="card-text">{{ weather_data.current.wind_speed }} m/s</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-light mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">Wind Direction</h5>
+                                <p class="card-text"><span id="windDirection"></span> {{weather_data.current.wind_deg}}°
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display other weather data fields as needed -->
+        <div class="location_title">{{ location_name }} Forcast</div>
+        <div class="forcast-container">
+            {% for day in weather_data.daily %}
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="mb-3">Day {{ forloop.counter }}</h3>
+                    {% for weather in day.weather %}
+                    {% if forloop.counter0 == 0 %}
+                    <img class="mb-3" style="width=80%; height=auto;"
+                        src="{% static 'svg/'|add:weather.main|add:'.svg' %}" alt="{{ weather.main }} SVG Image">
+                    <h2 class="weather-description mb-3">{{ weather.description }}</h2>
+                    {% endif %}
+                    {% endfor %}
+                    <div class="container mt-auto mb-3 text-left align-items-start">
+                        <div class="temp-info">
+                            <div class="row">
+                                <p><strong>Day</strong> <span class="temp" data-unit="F"
+                                        data-kelvin="{{ day.temp.day }}">{{ day.temp.day }}</span> <span>°</span><span
+                                        class="temp_unit">F</span></p>
+                                <p><strong>Night</strong> <span class="temp" data-unit="F"
+                                        data-kelvin="{{ day.temp.night }}">{{ day.temp.night }}</span>
+                                    <span>°</span><span class="temp_unit">F</span>
+                                </p>
+                            </div>
+                            <div class="row">
+                                <p><strong>Dusk</strong> <span class="temp" data-unit="F"
+                                        data-kelvin="{{ day.temp.eve }}">{{ day.temp.eve }}</span> <span>°</span><span
+                                        class="temp_unit">F</span></p>
+                                <p><strong>Min</strong> <span class="temp" data-unit="F"
+                                        data-kelvin="{{ day.temp.min }}">{{ day.temp.min }}</span> <span>°</span><span
+                                        class="temp_unit">F</span></p>
+                            </div>
+                            <div class="row">
+                                <p><strong>Max</strong> <span class="temp" data-unit="F"
+                                        data-kelvin="{{ day.temp.max }}">{{ day.temp.max }}</span> <span>°</span><span
+                                        class="temp_unit">F</span></p>
+                                <p><strong>Dawn</strong> <span class="temp" data-unit="F"
+                                        data-kelvin="{{ day.temp.morn }}">{{ day.temp.morn }}</span> <span>°</span><span
+                                        class="temp_unit">F</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="text-align: left;">{{day.summary}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="btn-outer"> <!-- Center horizontally -->
+            <div class="btn-container">
+                <i class="fa fa-sun-o" aria-hidden="true"></i>
+                <label class="switch btn-color-mode-switch">
+                    <input type="checkbox" name="color_mode" id="toggle_temp" value="1">
+                    <span class="slider"></span>
+                </label>
+                <i class="fa fa-moon-o" aria-hidden="true"></i>
+            </div>
+        </div>
+
+        {% else %}
+        {% if request.GET.location %}
+        <div class="location_title" style="padding-top: 5vh; font-weight: 400;">Error: Weather data not available for
+            "{{ request.GET.location }}".</div>
+        {% endif %}
+        {% endif %}
+    </div>
+
+
+    {% block footer %}
+    {% include 'footer.html' %}
+    {% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Set initial text
+            setSliderText($("#toggle_temp").prop("checked"));
+
+            // Update text when slider is clicked
+            $("#toggle_temp").on("change", function () {
+                setSliderText(this.checked);
+            });
+        });
+
+        function setSliderText(isDarkMode) {
+            const sliderText = isDarkMode ? "°C" : "°F";
+            $(".btn-color-mode-switch .slider").text(sliderText);
+        }
+    </script>
+    <script>
+        // JavaScript code to toggle temperature unit between Celsius and Fahrenheit
+        const kelvinToCelsius = (kelvin) => kelvin - 273.15;
+        const kelvinToFahrenheit = (kelvin) => (kelvin - 273.15) * 9 / 5 + 32;
+
+        let currentUnit = "F"; // Initialize the current unit to Fahrenheit
+
+        // Function to update the temperature and its unit
+        function updateTemperature(unit) {
+            const temperatureElements = document.querySelectorAll(".temp");
+            const tempUnitElements = document.querySelectorAll(".temp_unit");
+
+            temperatureElements.forEach((tempElement, index) => {
+                const temperatureInKelvin = parseFloat(tempElement.dataset.kelvin);
+                let convertedTemperature;
+
+                if (unit === "C") {
+                    convertedTemperature = kelvinToCelsius(temperatureInKelvin).toFixed(2);
+                } else if (unit === "F") {
+                    convertedTemperature = kelvinToFahrenheit(temperatureInKelvin).toFixed(2);
+                }
+
+                tempElement.textContent = convertedTemperature;
+                tempUnitElements[index].textContent = unit;
+            });
+
+            currentUnit = unit; // Update the current unit
+        }
+
+        // Initial setup to display temperature in Fahrenheit (default)
+        updateTemperature("F");
+
+        // Add event listener to the toggle button
+        const toggleButton = document.getElementById("toggle_temp");
+        toggleButton.addEventListener("click", function () {
+            if (currentUnit === "C") {
+                updateTemperature("F");
+            } else {
+                updateTemperature("C");
+            }
+        });
+    </script>
+
+    <script>
+        function windDirection(degrees) {
+            const directions = ['North (N)', 'North East (NE)', 'East (E)', 'South East (SE)', 'South (S)', 'South West (SW)', 'West (W)', 'North West (NW)'];
+            const index = Math.round((degrees % 360) / 45);
+            return directions[index % 8];
+        }
+
+        const windDirectionSpan = document.getElementById("windDirection");
+        const windDegrees = {{ weather_data.current.wind_deg }};
+        const cardinalDirection = windDirection(windDegrees);
+        windDirectionSpan.textContent = cardinalDirection;
+    </script>
+</body>
+
+</html>

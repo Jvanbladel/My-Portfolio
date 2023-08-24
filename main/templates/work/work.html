@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Work Page{% endblock %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/work.css' %}">
+<div class="page_title_header">Project Showcase</div>
+<hr>
+
+<div class="stagard-container">
+    <div class="start-stagard-text">Explore my portfolio of projects and professional experiences in software
+        engineering.</div>
+    {% for project in project_list %}
+    <div class="item {% cycle 'item1' 'item2' %}">
+        <a href="{{ project.href }}" style="text-decoration: none;">
+            <img src="{% static project.img %}">
+            <div>
+                <div class="project_body_head">{{project.name}}</div>
+                <div class="project_body_body">{{project.short_description}}</div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+    <div class="end-stagard-text-right">With unwavering determination, I actively
+        pursue personal projects and embrace
+        opportunities for continuous personal growth.</div>
+    <!-- Add more items as needed -->
+</div>
+
+{% endblock %}

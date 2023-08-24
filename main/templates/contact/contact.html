@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Page{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<!-- Add your unique content for the contact page here -->
+<div class="page_title_header">Contact</div>
+<div class="page_sub_title_header">Please reach out to explore collaboration possibilities.</div>
+<hr>
+<div class="page_sub_title_header">Jason.vanb1@gmail.com</div>
+<div class="page_body_form_header">Get an Emailed Copy of my Resume!</div>
+<div class="contact_form">
+    <form action="/contact" method="POST">
+        {% csrf_token %}
+        <input placeholder="First Name" type="text" required>
+        <input placeholder="Last Name" type="text" required>
+        <input placeholder="Email" type="email" name="customerEmail" required>
+        <button onclick="alert('Not yet implemented!')">Resume</button>
+    </form>
+</div>
+
+
+<div class="contact_links">
+
+</div>
+
+{% endblock %}

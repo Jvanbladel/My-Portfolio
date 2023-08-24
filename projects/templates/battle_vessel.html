@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Battle Vessel{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/battle_vessel.css' %}">
+<div class="page_title_header">Battle Vessel</div>
+<hr>
+<div class="grid-container">
+    <!-- The grid will be dynamically generated using JavaScript -->
+</div>
+<div class="misses-grid">
+    <!-- The misses grid will be generated using JavaScript -->
+</div>
+<button id="resetBtn" onclick="resetGame()" style="display: none;">Reset</button>
+<script src="{% static 'js/battle_vessel.js' %}"></script>
+{% endblock %}

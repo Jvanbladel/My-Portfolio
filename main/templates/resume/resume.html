@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Resume Page{% endblock %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/resume.css' %}">
+<div class="page_title_header">Resume</div>
+<hr>
+<div class="embed-responsive embed-responsive-16by9">
+    <embed src="{% static 'pdf/resume.pdf' %}" type="application/pdf" class="resume_pdf_iframe">
+    <noembed class="unable_to_load_text">
+        <p>
+            Your browser does not support PDF files:(
+        </p>
+        <a href="{% static 'pdf/resume.pdf' %}">Download Resume</a>
+    </noembed>
+    </embed>
+</div>
+
+{% endblock %}

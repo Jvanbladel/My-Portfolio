@@ -1,0 +1,48 @@
+body{
+  margin: 0;
+  background-color: var(--background);
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+hr{
+  margin-left: 10vw;
+  width: 80vw;
+}
+
+a:hover{
+  color: inherit;
+}
+
+:root {
+  --background: #fdf7f2;
+  --dark_text: #000000;
+  --light_text: #ffffff;
+  --light_text_hover: #000000;
+  --secondary_color: #68756F;
+  --tertiary_color: #4c4c4c;
+}
+
+.page_title_header{
+  text-align: center;
+  font-family: Martel;
+  font-weight: 900;
+  color: var(--dark_text);
+  font-size: 4vw;
+}
+
+.content{
+  text-align: center;
+}
+
+.page_sub_title_header{
+text-align: center;
+font-family: Martel;
+font-weight: 200;
+color: var(--dark_text);
+font-size: 1.5vw;
+margin-top: -2vh;
+}

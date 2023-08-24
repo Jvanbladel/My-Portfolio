@@ -1,0 +1,31 @@
+.resume_pdf_iframe{
+    width: 80vw;
+    margin-left: 10vw;
+    height: 117vh; 
+    
+}
+.unable_to_load_text{
+    text-align: center;
+    width: 80vw;
+    margin-left: 10vw;
+    padding-bottom: 10vh;
+}
+
+.unable_to_load_text p {
+    font-size: 2vw;
+    font-family: Martel;
+    font-weight: 500;
+    color: var(--dark_text);
+}
+
+.unable_to_load_text a {
+    font-size: 1.5vw;
+    font-family: Martel;
+    font-weight: 400;
+    color: var(--light_text);
+    padding: 25px;
+    background-color: var(--secondary_color);
+    border-radius: 25px;
+    text-decoration: none;
+   
+}

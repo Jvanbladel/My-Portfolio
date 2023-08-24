@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Index Page{% endblock %}
+
+{% block content %}
+<!-- Add your unique content for the index page here -->
+<!-- Add Bootstrap Navigation Bar -->
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+<div class="body_box d-flex align-items-center justify-content-around">
+    <img class="circle_img" src="{% static 'images/main.jpg' %}">
+
+    <div>
+        <div class="text-title">Jason Van Bladel</div>
+        <div class="text-sub-title">A Bit About Me</div>
+        <p class="text-paragraph">I am a results-driven software engineer with a Master's degree in Computer Science
+            from the University of the Pacific. My passion lies in problem-solving and collaborating within teams to
+            deliver exceptional solutions. With expertise in Python, I have a proven track record in web application
+            development, full-stack programming, and data science projects. I look forward to showcasing my work and
+            discussing potential opportunities in the world of software engineering.</p>
+        <a class="resume-button" href="{% url 'resume' %}">
+            Resume
+        </a>
+
+    </div>
+
+</div>
+
+<hr>
+<div class="body_middle_box">
+    <div class="d-flex justify-content-between">
+        <div class="box_middle_title">My Experience</div>
+        <div class="box_middle_date">2021-Present</div>
+    </div>
+
+
+    <div class="box_middle_container d-flex align-items-center justify-content-around">
+        <img class="square_img" src="{% static 'images/experience.jpg' %}">
+
+        <div class="text-block">
+            <div class="text-middle-title">Software Engineer</div>
+            <div class="text-middle-left">InfoIMAGE Inc.</div>
+            <div class="text-sub-title">A Bit About this Role</div>
+            <p class="text-paragraph">At Info Image, I excelled as a software engineer, playing a key role in
+                designing
+                financial statements with custom software. Leveraging my expertise in Shell, Perl, and Python
+                scripting,
+                I streamlined processes, enabling efficient data processing and report generation. Collaborating
+                closely
+                with QA, account services, and business analysts, I delivered high-quality, innovative solutions
+                tailored to meet client requirements.</p>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="body_middle_box">
+    <div class="box_middle_title">My Education</div>
+    <div class="box_middle_container d-flex align-items-center justify-content-around">
+        <div class="text-block">
+            <div class="text-middle-title"> M.S. in CompSci</div>
+            <div class="text-middle-left">University of the Pacific</div>
+            <p class="text-paragraph">I pursued my academic journey with a strong commitment to excellence. At the
+                University of the Pacific, I attained a Master's degree in Computer Science, delving into advanced
+                topics of data analysis and high-level parallel computing. Prior to that, during my undergraduate
+                studies, I focused on mastering the fundamentals of software development. My education has equipped
+                me
+                with a robust foundation and expertise, enabling me to tackle complex challenges in the world of
+                software engineering with confidence and proficiency.</p>
+        </div>
+        <img class="square_img" src="{% static 'images/education.png' %}">
+    </div>
+</div>
+
+
+
+
+{% endblock %}
